@@ -6,8 +6,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Función para cerrar todos los menús
     function closeAllMenus() {
-        megamenus.forEach(menu => menu.classList.remove('active'));
-        navItems.forEach(item => item.classList.remove('active'));
+        megamenus.forEach(menu => {
+            menu.classList.remove('active');
+            menu.classList.remove('mobile-active');
+        });
+        navItems.forEach(item => {
+            item.classList.remove('active');
+            item.classList.remove('mobile-open');
+        });
         activeMenu = null;
     }
 
@@ -36,14 +42,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!targetMenu) return;
 
-        // Mostrar al pasar el mouse
+        // Mostrar al pasar el mouse (Desktop)
         item.addEventListener('mouseenter', () => {
-            cancelClose();
-            closeAllMenus(); // Cerrar otros instantáneamente si cambiamos de ítem
-            targetMenu.classList.add('active');
-            item.classList.add('active');
-            activeMenu = targetMenu;
+            if (window.innerWidth > 1024) {
+                cancelClose();
+                closeAllMenus(); // Cerrar otros instantáneamente si cambiamos de ítem
+                targetMenu.classList.add('active');
+                item.classList.add('active');
+                activeMenu = targetMenu;
+            }
         });
+
+        // Click para Móvil (Acordeón)
+        item.addEventListener('click', (e) => {
+            if (window.innerWidth <= 1024) {
+                e.preventDefault();
+
+                const isOpen = targetMenu.classList.contains('mobile-active');
+
+                // Resetear estados móviles antes de abrir uno nuevo
+                megamenus.forEach(m => m.classList.remove('mobile-active'));
+                navItems.forEach(i => i.classList.remove('mobile-open'));
+
+                if (!isOpen) {
+                    targetMenu.classList.add('mobile-active');
+                    item.classList.add('mobile-open');
+                }
+            }
+        });
+
+        // Cierre preciso usando el nuevo botón real
+        const backBtn = targetMenu.querySelector('.mobile-back-btn');
+        if (backBtn) {
+            backBtn.addEventListener('click', (e) => {
+                e.stopPropagation(); // Evitar que el clic en el menú (que podría tener lógica de cierre) interfiera
+                targetMenu.classList.remove('mobile-active');
+                item.classList.remove('mobile-open');
+            });
+        }
 
         item.addEventListener('mouseleave', () => {
             scheduleClose();

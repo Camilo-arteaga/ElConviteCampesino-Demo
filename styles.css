@@ -721,6 +721,8 @@ a {
         padding: 2rem;
         box-shadow: var(--shadow-md);
         overflow-y: auto;
+        z-index: 1001;
+        /* Debajo de los megamenus cuando se abren */
     }
 
     .nav-list.active {
@@ -730,9 +732,29 @@ a {
 
     .nav-link {
         width: 100%;
-        padding: 1rem;
-        font-size: 1.1rem;
+        padding: 1.5rem 1rem;
+        /* Más espacio para los dedos */
+        font-size: 1.2rem;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* Indicador de submenú en móvil */
+    .nav-link[data-target]::after {
+        content: '\f078';
+        border-radius: 0;
+        font-family: 'Font Awesome 6 Free';
+        font-weight: 900;
+        font-size: 0.8rem;
+        transition: transform 0.3s ease;
+        opacity: 0.7;
+    }
+
+    .nav-link.mobile-open::after {
+        transform: rotate(180deg);
+        color: var(--color-accent);
     }
 
     /* Grids Stacked */
@@ -745,17 +767,73 @@ a {
     }
 
     .megamenu {
-        position: static;
-        /* Flujo normal en móvil */
+        position: fixed;
+        /* Fixed to cover the entire viewport area below header */
+        top: var(--nav-height);
+        left: 0;
         width: 100%;
+        height: calc(100vh - var(--nav-height));
         transform: none;
         box-shadow: none;
-        display: none !important;
-        /* Por ahora ocultamos el mega menu complejo en móvil para simplificar, o lo convertimos en acordeón */
+        display: none;
+        background: var(--color-brand);
+        z-index: 2100;
+        /* Above nav-list */
+        overflow-y: auto;
+        border-radius: 0;
     }
 
-    /* Nota: Para una implementación completa móvil del megamenu se requiere JS acordeón. 
-       Por ahora, permitimos navegación básica. */
+    .megamenu.mobile-active {
+        display: block !important;
+        animation: fadeIn 0.3s ease;
+    }
+
+    /* Botón de volver real en el submenú móvil */
+    .mobile-back-btn {
+        display: none;
+        /* Oculto en desktop por si acaso, aunque el parent ya está oculto */
+    }
+
+    @media (max-width: 1024px) {
+        .mobile-back-btn {
+            display: flex;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: none;
+            padding: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.05);
+            margin-bottom: 0.5rem;
+            align-items: center;
+        }
+    }
+
+    /* Ajuste para que el sidebar se vea como lista normal */
+    .megamenu-sidebar {
+        background: transparent !important;
+        padding: 0 !important;
+    }
+
+    .megamenu-content {
+        display: none;
+        /* Ocultar imágenes en móvil */
+    }
+
+    .submenu-list {
+        background: transparent;
+        box-shadow: none;
+        padding: 0;
+    }
+
+    .submenu-list li a {
+        color: white !important;
+        padding: 1.5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        font-size: 1.1rem;
+    }
 
     .hero-carousel {
         height: 50vh;
