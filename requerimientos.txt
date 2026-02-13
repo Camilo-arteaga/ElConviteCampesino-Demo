@@ -1,0 +1,60 @@
+REQUERIMIENTOS DEL SITIO WEB - EL CONVITE CAMPESINO
+
+1. REQUERIMIENTOS FUNCIONALES
+
+1.1 Sistema de Navegación y Menú
+- Header fijo (sticky) con efecto de desenfoque (backdrop-filter) y sombra.
+- Menú de navegación principal con los siguientes enlaces:
+    - ¿Quiénes somos? (con Megamenú)
+    - ¿Qué hacemos? (con Megamenú)
+    - El convite al día (con Megamenú)
+    - Memorias (con Megamenú)
+    - Geovisor: Integracion de geovisor para mostrar la ubicacion de diferentes sedes de la organizacion.
+    - Tienda: creacion de tienda online para vender productos relacionados con la organización(solo mostrar productos y precios,pues las ventas se hacen mediane whatsapp).
+    - Contáctanos: direccionar a whatsapp.
+    - Solidaridad: direccionar a whatsapp.
+- Megamenús interactivos para las secciones principales:
+    - ¿Quiénes somos?: Historia, Misión, Visión, Coordinaciones, Asociados.
+    - ¿Qué hacemos?: Proyectos en curso, Proyectos desarrollados, Objetos de acción.
+    - El convite al día: Noticias, Eventos, Blog.
+    - Memorias: Publicaciones, Audiovisuales, Podcasts.
+- Comportamiento responsivo:
+    - Escritorio: Activación de megamenús por hover con tiempo de gracia (300ms).
+    - Móvil: Menú tipo hamburguesa y submenús tipo acordeón (activación por clic).
+    - Botón de retroceso ("Volver") en submenús móviles.
+
+1.2 Carrusel Hero (Slider Principal)
+- Carrusel de imágenes a pantalla completa (altura de 500px).
+- Transiciones suaves de opacidad (fade) entre diapositivas.
+- Subtítulos (captions) animados con efecto de deslizamiento hacia arriba (slideUp).
+- Controles de navegación: Botones Anterior/Siguiente e indicadores de puntos (dots).
+- Reproducción automática (auto-slide) cada 5 segundos.
+
+1.3 Secciones de Contenido
+- Sección de Introducción: Descripción de la organización, historia y una lista de acciones destacadas con iconos (Font Awesome).
+- Sección de Ubicación: Información sobre la sede en Arcabuco, Boyacá.
+- Sección "Quiénes Somos": Galería de imágenes representativas del trabajo comunitario.
+
+1.4 Pie de Página (Footer)
+- Información de marca y descripción breve.
+- Redes sociales: Enlaces a Facebook, Instagram, Twitter y WhatsApp.
+- Enlaces rápidos de navegación.
+- Información de contacto: Dirección, teléfono y correo electrónico.
+- Formulario de suscripción al boletín (Newsletter) con validación de correo electrónico.
+
+2. REQUERIMIENTOS NO FUNCIONALES
+
+2.1 Diseño y Estética
+- Paleta de colores inspirada en la naturaleza: Verdes (marca), Beige/Crema (fondo), y detalles en Amarillo Mostaza (acentos).
+- Tipografía moderna: 'Inter' para cuerpo de texto y 'Poppins' para títulos de Google Fonts.
+- Uso de iconos vectoriales mediante Font Awesome 6.
+- Micro-animaciones en tarjetas de imagen y botones (hover effects, lift, transitions).
+
+2.2 Responsividad y Adaptabilidad
+- Diseño "Mobile-First" o totalmente adaptable a dispositivos móviles, tablets y escritorio.
+- Punto de quiebre (breakpoint) principal a los 1024px para el cambio de navegación escritorio/móvil.
+
+2.3 Rendimiento y SEO
+- Metaetiquetas básicas para codificación, compatibilidad y escalado.
+- Título descriptivo de la página.
+- Estructura semántica de HTML5 (header, nav, main, section, footer).
